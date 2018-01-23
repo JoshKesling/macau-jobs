@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  body: MyText
+  open: false
+  closed_date: 2018-01-24 00:20:30
+
+two:
+  title: MyString
+  body: MyText
+  open: false
+  closed_date: 2018-01-24 00:20:30
