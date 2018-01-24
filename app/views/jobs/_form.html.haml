@@ -1,22 +1,13 @@
-= form_for @job do |f|
-  - if @job.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@job.errors.count, "error")} prohibited this job from being saved:"
-      %ul
-        - @job.errors.full_messages.each do |message|
-          %li= message
+= simple_form_for @job do |f|
+  = f.error_notification
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :open
-    = f.check_box :open
-  .field
-    = f.label :closed_date
-    = f.datetime_select :closed_date
-  .actions
-    = f.submit 'Save'
+  .form-inputs
+    = f.input :title
+    = f.input :body
+    = f.input :open,
+      as: :radio_buttons,
+      label: 'Is this job open?',
+      item_wrapper_class: 'radio-inline'
+  
+  .form-actions
+    = f.button :submit, 'Save Job'
