@@ -2626,9 +2626,9 @@ input[type="search"] {
 .checkbox {
   position: relative;
   display: block;
-  margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .radio label,
 .checkbox label {
   min-height: 21px;
@@ -3448,6 +3448,9 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-block + .btn-block {
   margin-top: 5px;
+}
+.button-alt-link {
+  padding-top: 20px;
 }
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
