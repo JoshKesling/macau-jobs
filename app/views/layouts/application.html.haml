@@ -2,11 +2,13 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title MacauJobs
+    %title Macau-Jobs
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+
     %nav.navbar.navbar-toggleable-md.navbar-inverse.navbar-fixed-top{:role => "navigation"}
       .container
         .navbar-header
@@ -15,12 +17,13 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to "www.Macau-Jobs.com", root_path, class: "navbar-brand"
+          = link_to "Macau-Jobs.com", root_path, class: "navbar-brand"
         .collapse.navbar-collapse#topNav
           %ul.nav.navbar-nav.navbar-right
             %li
               = link_to "Sign In", new_user_session_path
             %li
               = link_to "Sign Up", new_user_registration_path
-    .container
+
+    .container.content
       = yield
