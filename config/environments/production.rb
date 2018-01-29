@@ -90,6 +90,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Set action_mailer to use AWS
-  config.action_mailer.delivery_method = :aws_sdk
-  config.action_mailer.default_url_options = :aws_sdk
+  config.action_mailer.delivery_method = :ses
+  config.action_mailer.default_url_options = :ses
 end
