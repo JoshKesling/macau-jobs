@@ -20,10 +20,14 @@
           = link_to "Macau-Jobs.com", root_path, class: "navbar-brand"
         .collapse.navbar-collapse#topNav
           %ul.nav.navbar-nav.navbar-right
-            %li
-              = link_to "Sign In", new_user_session_path
-            %li
-              = link_to "Sign Up", new_user_registration_path
+            - if user_signed_in?
+              %li
+                = link_to "Sign Out", destroy_user_session_path, method: :delete
+            - else
+              %li
+                = link_to "Sign In", new_user_session_path
+              %li
+                = link_to "Sign Up", new_user_registration_path
 
     .container.content
       = yield
