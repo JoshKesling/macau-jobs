@@ -5,7 +5,12 @@
       .panel-body
         %h4 Job Title:
         .well.well-sm
-          %h3= @job.title
+          .job-title
+            = @job.title
+        %p
+          %h4 Job Summary:
+        .well
+          = @job.summary
         %p
           %h4 Job Description:
         .well.well-lg
