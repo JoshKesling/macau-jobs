@@ -1,18 +1,20 @@
-%p#notice= notice
+.row
+  .col-sm-8.col-sm-offset-2
+    %p#notice= notice
+    .panel.panel-success
+      .panel-body
+        %h4 Job Title:
+        .well.well-sm
+          %h3= @job.title
+        %p
+          %h4 Job Description:
+        .well.well-lg
+          = simple_format(@job.body)
+        %p
+          - if @job.open
+            %h4 We are looking for people to fill this position!
+          - else
+            %h4 We're sorry, but this job has already been filled.
+        %p
+          = link_to 'Edit', edit_job_path(@job), class: 'btn btn-success'
 
-%p
-  %b Title:
-  = @job.title
-%p
-  %b Body:
-  = @job.body
-%p
-  %b Open:
-  = @job.open
-%p
-  %b Closed date:
-  = @job.closed_date
-
-= link_to 'Edit', edit_job_path(@job)
-\|
-= link_to 'Back', jobs_path

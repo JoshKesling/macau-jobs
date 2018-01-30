@@ -1,13 +1,12 @@
 = simple_form_for @job do |f|
   = f.error_notification
-
   .form-inputs
-    = f.input :title
-    = f.input :body
+    = f.input :title, label: 'Job Title', autofocus: true
+    = f.input :body, label: 'Job Description', input_html: { rows: 10 }
     = f.input :open,
       as: :radio_buttons,
       label: 'Is this job open?',
       item_wrapper_class: 'radio-inline'
-  
+
   .form-actions
     = f.button :submit, 'Save Job', class: 'btn-success'
