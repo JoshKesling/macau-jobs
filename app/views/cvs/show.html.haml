@@ -1,0 +1,60 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @cv.user
+%p
+  %b First name:
+  = @cv.first_name
+%p
+  %b Middle name:
+  = @cv.middle_name
+%p
+  %b Last name:
+  = @cv.last_name
+%p
+  %b Age:
+  = @cv.age
+%p
+  %b Height:
+  = @cv.height
+%p
+  %b Weight:
+  = @cv.weight
+%p
+  %b Marital status:
+  = @cv.marital_status
+%p
+  %b Children:
+  = @cv.children
+%p
+  %b Phone number:
+  = @cv.phone_number
+%p
+  %b Current address l1:
+  = @cv.current_address_L1
+%p
+  %b Current address l2:
+  = @cv.current_address_L2
+%p
+  %b Current city:
+  = @cv.current_city
+%p
+  %b Current country:
+  = @cv.current_country
+%p
+  %b Skills:
+  = @cv.skills
+%p
+  %b Work visa:
+  = @cv.work_visa
+%p
+  %b Visa exp date:
+  = @cv.visa_exp_date
+%p
+  %b Nationality:
+  = @cv.nationality
+
+= link_to 'Edit', edit_cv_path(@cv)
+\|
+= link_to 'Back', cvs_path

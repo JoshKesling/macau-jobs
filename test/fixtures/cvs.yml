@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  age: 1
+  height: 1
+  weight: 1
+  marital_status: MyString
+  children: 1
+  phone_number: MyString
+  current_address_L1: MyString
+  current_address_L2: MyString
+  current_city: MyString
+  current_country: MyString
+  skills: MyText
+  work_visa: false
+  visa_exp_date: 2018-01-31
+  nationality: MyString
+
+two:
+  user: two
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  age: 1
+  height: 1
+  weight: 1
+  marital_status: MyString
+  children: 1
+  phone_number: MyString
+  current_address_L1: MyString
+  current_address_L2: MyString
+  current_city: MyString
+  current_country: MyString
+  skills: MyText
+  work_visa: false
+  visa_exp_date: 2018-01-31
+  nationality: MyString

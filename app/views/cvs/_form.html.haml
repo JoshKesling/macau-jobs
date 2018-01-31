@@ -1,0 +1,25 @@
+= simple_form_for(@cv) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.input :first_name
+    = f.input :middle_name
+    = f.input :last_name
+    = f.input :age
+    = f.input :height
+    = f.input :weight
+    = f.input :marital_status
+    = f.input :children
+    = f.input :phone_number
+    = f.input :current_address_L1
+    = f.input :current_address_L2
+    = f.input :current_city
+    = f.input :current_country
+    = f.input :skills
+    = f.input :work_visa
+    = f.input :visa_exp_date
+    = f.input :nationality
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,55 @@
+%h1 Listing cvs
+
+%table
+  %thead
+    %tr
+      %th User
+      %th First name
+      %th Middle name
+      %th Last name
+      %th Age
+      %th Height
+      %th Weight
+      %th Marital status
+      %th Children
+      %th Phone number
+      %th Current address l1
+      %th Current address l2
+      %th Current city
+      %th Current country
+      %th Skills
+      %th Work visa
+      %th Visa exp date
+      %th Nationality
+      %th
+      %th
+      %th
+
+  %tbody
+    - @cvs.each do |cv|
+      %tr
+        %td= cv.user
+        %td= cv.first_name
+        %td= cv.middle_name
+        %td= cv.last_name
+        %td= cv.age
+        %td= cv.height
+        %td= cv.weight
+        %td= cv.marital_status
+        %td= cv.children
+        %td= cv.phone_number
+        %td= cv.current_address_L1
+        %td= cv.current_address_L2
+        %td= cv.current_city
+        %td= cv.current_country
+        %td= cv.skills
+        %td= cv.work_visa
+        %td= cv.visa_exp_date
+        %td= cv.nationality
+        %td= link_to 'Show', cv
+        %td= link_to 'Edit', edit_cv_path(cv)
+        %td= link_to 'Destroy', cv, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Cv', new_cv_path
