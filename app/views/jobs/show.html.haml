@@ -1,18 +1,11 @@
 .row
   .col-sm-8.col-sm-offset-2
     %p#notice= notice
-    .panel.panel-success
+    .panel.panel-success.job-show-panel
       .panel-body
-        %h4 Job Title:
         .well.well-sm
           .job-title
             = @job.title
-        %p
-          %h4 Job Summary:
-        .well
-          = @job.summary
-        %p
-          %h4 Job Description:
         .well.well-lg
           = simple_format(@job.body)
         %p

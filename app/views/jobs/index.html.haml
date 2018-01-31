@@ -1,28 +1,17 @@
 .row
-  .col-sm-6.col-sm-offset-3
-    %h1.center Current Jobs Available
-
-%table
-  %thead
-    %tr
-      %th Title
-      %th Body
-      %th Open
-      %th Closed date
-      %th
-      %th
-      %th
-
-  %tbody
+  .col-sm-10.col-sm-offset-1
+    %h2.center Current Jobs Available
+.row
+  .col-sm-10.col-sm-offset-1
     - @jobs.each do |job|
-      %tr
-        %td= job.title
-        %td= job.body
-        %td= job.open
-        %td= job.closed_date
-        %td= link_to 'Show', job
-        %td= link_to 'Edit', edit_job_path(job)
-        %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }
+      - if job.open
+        .panel.panel-success.listing-panel
+          .panel-heading
+            %h4
+              = job.title
+              = link_to "More", job, class: 'btn btn-success btn-sm pull-right'
+          .panel-body
+            %p= job.summary
 
 %br
 
