@@ -15,11 +15,11 @@
     = f.input :current_address_L1
     = f.input :current_address_L2
     = f.input :current_city
-    = f.input :current_country
+    = f.input :current_country, { priority: @countries, selected: "MO" }
     = f.input :skills
     = f.input :work_visa
     = f.input :visa_exp_date
-    = f.input :nationality
+    = f.input :nationality, as: :country, priority: @countries
 
   .form-actions
     = f.button :submit

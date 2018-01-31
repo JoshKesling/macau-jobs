@@ -1,5 +1,6 @@
 class CvsController < ApplicationController
   before_action :set_cv, only: [:show, :edit, :update, :destroy]
+  before_action :country_prefs, only: [:new, :edit]
 
   # GET /cvs
   # GET /cvs.json
@@ -70,5 +71,26 @@ class CvsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cv_params
       params.require(:cv).permit(:user_id, :first_name, :middle_name, :last_name, :age, :height, :weight, :marital_status, :children, :phone_number, :current_address_L1, :current_address_L2, :current_city, :current_country, :skills, :work_visa, :visa_exp_date, :nationality)
+    end
+
+    # Set the list of preferred countries.
+    def country_prefs
+      @countries = %w[Indonesia
+                      Philippines
+                      Malaysia
+                      Thailand
+                      India
+                      Nepal
+                      Singapore
+                      Bangladesh
+                      Cambodia
+                      China
+                      French\ Polynesia
+                      Hong\ Kong
+                      Macao
+                      Micronesia
+                      Sri\ Lanka
+                      Taiwan
+                      Viet\ Nam]
     end
 end
