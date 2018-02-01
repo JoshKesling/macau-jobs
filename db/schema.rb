@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131091820) do
+ActiveRecord::Schema.define(version: 20180131135357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,28 @@ ActiveRecord::Schema.define(version: 20180131091820) do
     t.text "skills"
     t.boolean "work_visa"
     t.date "visa_exp_date"
-    t.string "nationality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "passport_country"
+    t.string "passport_number"
+    t.date "passport_expiration_date"
     t.index ["user_id"], name: "index_cvs_on_user_id"
+  end
+
+  create_table "educations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cv_id"
+    t.string "name"
+    t.string "city"
+    t.string "country"
+    t.integer "years_attended"
+    t.integer "year_completed"
+    t.integer "months_attended"
+    t.boolean "graduated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_educations_on_cv_id"
+    t.index ["user_id"], name: "index_educations_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -63,6 +81,20 @@ ActiveRecord::Schema.define(version: 20180131091820) do
     t.bigint "user_id"
     t.index ["job_id"], name: "index_jobs_users_on_job_id"
     t.index ["user_id"], name: "index_jobs_users_on_user_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cv_id"
+    t.string "name"
+    t.string "read"
+    t.string "write"
+    t.string "speak"
+    t.string "listen"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_languages_on_cv_id"
+    t.index ["user_id"], name: "index_languages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,6 +118,10 @@ ActiveRecord::Schema.define(version: 20180131091820) do
   end
 
   add_foreign_key "cvs", "users"
+  add_foreign_key "educations", "cvs"
+  add_foreign_key "educations", "users"
   add_foreign_key "jobs_users", "jobs"
   add_foreign_key "jobs_users", "users"
+  add_foreign_key "languages", "cvs"
+  add_foreign_key "languages", "users"
 end

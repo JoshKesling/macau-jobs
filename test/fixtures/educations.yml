@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  cv: one
+  name: MyString
+  city: MyString
+  country: MyString
+  years_attended: 1
+  year_completed: 1
+  months_attended: 1
+  graduated: false
+
+two:
+  user: two
+  cv: two
+  name: MyString
+  city: MyString
+  country: MyString
+  years_attended: 1
+  year_completed: 1
+  months_attended: 1
+  graduated: false
