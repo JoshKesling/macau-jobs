@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131135357) do
+ActiveRecord::Schema.define(version: 20180202102106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20180131135357) do
     t.string "passport_country"
     t.string "passport_number"
     t.date "passport_expiration_date"
+    t.string "head_pic_file_name"
+    t.string "head_pic_content_type"
+    t.integer "head_pic_file_size"
+    t.datetime "head_pic_updated_at"
+    t.string "body_pic_file_name"
+    t.string "body_pic_content_type"
+    t.integer "body_pic_file_size"
+    t.datetime "body_pic_updated_at"
     t.index ["user_id"], name: "index_cvs_on_user_id"
   end
 
