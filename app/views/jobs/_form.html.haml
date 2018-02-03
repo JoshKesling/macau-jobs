@@ -1,5 +1,6 @@
 = simple_form_for @job do |f|
   = f.error_notification
+  = render 'shared/error_messages', object: f.object
   .form-inputs
     = f.input :title, label: 'Job Title', autofocus: true, hint: raw("Give a short and clear title for this position.<br>Example: \"Housekeeping in Casino\"")
     %hr
@@ -14,5 +15,6 @@
       item_wrapper_class: 'radio-inline',
       hint: raw("If the job is marked \"Open\" it will be visible to everyone on the main page.<br>If the job is marked \"Closed\" it will only be visible to you.")
     %hr
+    = f.input :agent, label: 'Which Agent is this Job for?', collection: @agent_list, input_html: { style: 'width: 300px;' }
   .form-actions
     = f.button :submit, 'Save Job', class: 'btn-success'
