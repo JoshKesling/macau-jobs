@@ -12,9 +12,10 @@
       as: :radio_buttons,
       label: 'Is this job open?',
       collection: [['Open', true], ['Closed', false]],
+      selected: 'Open',
       item_wrapper_class: 'radio-inline',
       hint: raw("If the job is marked \"Open\" it will be visible to everyone on the main page.<br>If the job is marked \"Closed\" it will only be visible to you.")
     %hr
     = f.input :agent, label: 'Which Agent is this Job for?', collection: @agent_list, input_html: { style: 'width: 300px;' }
   .form-actions
-    = f.button :submit, 'Save Job', class: 'btn-success'
+    = f.button :submit, 'Save Job', class: 'btn-primary'

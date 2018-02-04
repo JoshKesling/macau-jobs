@@ -1,6 +1,8 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[show edit update destroy]
   before_action :get_agents, only: %i[new create edit update]
+  before_action :set_page_title, only: %i[new show index edit]
+  before_action :set_partial_to_render, only: %i[new edit]
 
   # GET /jobs
   # GET /jobs.json
@@ -65,6 +67,25 @@ class JobsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_job
     @job = Job.find(params[:id])
+  end
+
+  def set_page_title
+    @page_title = case action_name
+      when 'index'
+        'We Need People to Fill These Jobs'
+      when 'show'
+        @job.title
+      when 'edit'
+        'Make Changes to This Job Post'
+      when 'new'
+        'Create a New Job Post'
+      else
+        ''
+    end
+  end
+
+  def set_partial_to_render
+    @partial_to_render = 'form'
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,18 +1,15 @@
 .row
   .col-sm-10.col-sm-offset-1
-    %h2.center Current Jobs Available
-.row
-  .col-sm-10.col-sm-offset-1
+    - if @page_title
+      %h2
+        = @page_title
     - @jobs.each do |job|
-      - if job.open
-        .panel.panel-success.listing-panel
+      -if job.open
+        .panel.panel-primary
           .panel-heading
-            %h4
+            %h4.job-title
               = job.title
-              = link_to "More", job, class: 'btn btn-success btn-sm pull-right'
+              = link_to "See Job", job, class: 'btn btn-primary pull-right'
           .panel-body
             %p= job.summary
-
-%br
-
 = link_to 'New Job', new_job_path

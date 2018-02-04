@@ -1,18 +1,17 @@
 .row
-  .col-sm-8.col-sm-offset-2
-    %p#notice= notice
-    .panel.panel-success.job-show-panel
+  .col-sm-10.col-sm-offset-1
+    .panel.panel-primary
+      .panel-heading.text-center
+        - if @page_title
+          %h2
+            = @page_title
       .panel-body
-        .well.well-sm
-          .job-title
-            = @job.title
-        .well.well-lg
-          = simple_format(@job.body)
+        = simple_format(@job.body)
+      .panel-footer.text-light
         %p
           - if @job.open
             %h4 We are looking for people to fill this position!
           - else
             %h4 We're sorry, but this job has already been filled.
         %p
-          = link_to 'Edit', edit_job_path(@job), class: 'btn btn-success'
-
+          = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary'
