@@ -1,27 +1,21 @@
-%h1 Listing agents
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Email
-      %th Address
-      %th Phone
-      %th
-      %th
-      %th
-
-  %tbody
-    - @agents.each do |agent|
-      %tr
-        %td= agent.name
-        %td= agent.email
-        %td= agent.address
-        %td= agent.phone
-        %td= link_to 'Show', agent
-        %td= link_to 'Edit', edit_agent_path(agent)
-        %td= link_to 'Destroy', agent, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Agent', new_agent_path
+.row
+  .col-sm-10.col-sm-offset-1
+    .panel.panel-primary
+      .panel-heading.agent-title
+        .row
+          .col-sm-6
+            %h3 Available Agents
+          .col-sm-6
+            = link_to "Create a New Agent", new_agent_path, class: 'btn btn-success pull-right-lg'
+      .panel-body
+        - @agents.each do |agent|
+          %h4
+            = link_to agent.name, agent, class: 'agent-name'
+          .row
+            .col-sm-6
+              %b Phone:
+              = agent.phone
+            .col-sm-6
+              %b Email:
+              = agent.email
+          %hr

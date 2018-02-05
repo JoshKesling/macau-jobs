@@ -1,5 +1,5 @@
 class AgentsController < ApplicationController
-  before_action :set_agent, only: [:show, :edit, :update, :destroy]
+  before_action :set_agent, only: %i[show edit update destroy]
 
   # GET /agents
   # GET /agents.json
@@ -9,8 +9,7 @@ class AgentsController < ApplicationController
 
   # GET /agents/1
   # GET /agents/1.json
-  def show
-  end
+  def show; end
 
   # GET /agents/new
   def new
@@ -18,8 +17,7 @@ class AgentsController < ApplicationController
   end
 
   # GET /agents/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /agents
   # POST /agents.json
@@ -62,13 +60,14 @@ class AgentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_agent
-      @agent = Agent.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def agent_params
-      params.require(:agent).permit(:name, :email, :address, :phone)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_agent
+    @agent = Agent.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def agent_params
+    params.require(:agent).permit(:name, :email, :address, :phone)
+  end
 end

@@ -8,8 +8,8 @@
         .panel.panel-primary
           .panel-heading
             %h4.job-title
-              = job.title
-              = link_to "See Job", job, class: 'btn btn-primary pull-right'
+              = link_to job.title, job
+              = link_to "View Job", job, class: 'btn btn-success pull-right'
           .panel-body
             %p= job.summary
 = link_to 'New Job', new_job_path

@@ -1,18 +1,20 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @agent.name
-%p
-  %b Email:
-  = @agent.email
-%p
-  %b Address:
-  = @agent.address
-%p
-  %b Phone:
-  = @agent.phone
-
-= link_to 'Edit', edit_agent_path(@agent)
-\|
-= link_to 'Back', agents_path
+.row
+  .col-sm-10.col-sm-offset-1
+    .panel.panel-primary
+      .panel-heading
+        %h3= @agent.name
+      .panel-body
+        %h4
+          %b Email:
+        %p
+          = @agent.email
+        %hr
+        %h4 
+          %b Address:
+        %p
+          = simple_format(@agent.address)
+        %hr
+        %h4
+          %b Phone:
+        %p
+          = @agent.phone

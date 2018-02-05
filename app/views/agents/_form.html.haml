@@ -1,11 +1,11 @@
-= simple_form_for(@agent) do |f|
+= simple_form_for @agent do |f|
   = f.error_notification
-
+  = render 'shared/error_messages', object: f.object
   .form-inputs
-    = f.input :name
-    = f.input :email
-    = f.input :address
-    = f.input :phone
+    = f.input :name, label: 'Agent\'s Name'
+    = f.input :email, label: 'Agent\'s Email Address'
+    = f.input :address, label: 'Agent\'s Address', input_html: { value: 'None' }
+    = f.input :phone, label: 'Agent\'s Phone Number'
 
   .form-actions
-    = f.button :submit, 'Save Agent', class: 'btn-success'
+    = f.button :submit, 'Save Agent', class: 'btn-primary'
