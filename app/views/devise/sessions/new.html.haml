@@ -5,7 +5,7 @@
       .form-inputs
         = f.input :login, required: false, autofocus: true
         = f.input :password, required: false
-        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        = f.input :remember_me, as: :boolean, input_html: { checked: true } if devise_mapping.rememberable?
       .form-actions
         = f.button :submit, "Log in", class: 'btn-success', class: 'btn-success'
     %h4.button-alt-link Don't have an account? #{link_to 'Sign up here!', new_user_registration_path}

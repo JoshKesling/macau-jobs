@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { in: 4..50 }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates_format_of :email, with: /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/, multiline: true
+  # validates_format_of :email, with: /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/, multiline: true
   validate :validate_username
 
   attr_accessor :login
