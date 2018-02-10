@@ -3,6 +3,7 @@ class JobsController < ApplicationController
   before_action :get_agents, only: %i[new create edit update]
   before_action :set_page_title, only: %i[new show index edit]
   before_action :set_partial_to_render, only: %i[new edit]
+  before_action :get_user, only: %i[new create edit update]
 
   # GET /jobs
   # GET /jobs.json
@@ -16,7 +17,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/new
   def new
-    @job = Job.new
+    @job = @user.jobs.build
   end
 
   # GET /jobs/1/edit
@@ -25,7 +26,7 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = Job.new(job_params)
+    @job = @user.jobs.build(job_params)
 
     respond_to do |format|
       if @job.save
@@ -90,10 +91,14 @@ class JobsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :body, :open, :closed_date, :summary, :agent)
+    params.require(:job).permit(:title, :body, :open, :closed_date, :summary, :agent_id)
   end
 
   def get_agents
     @agent_list = Agent.all
+  end
+
+  def get_user
+    @user = current_user
   end
 end

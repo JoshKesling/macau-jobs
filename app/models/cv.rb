@@ -1,3 +1,40 @@
+# == Schema Information
+#
+# Table name: cvs
+#
+#  id                       :integer          not null, primary key
+#  user_id                  :integer
+#  first_name               :string
+#  middle_name              :string
+#  last_name                :string
+#  age                      :integer
+#  height                   :integer
+#  weight                   :integer
+#  marital_status           :string
+#  children                 :integer
+#  phone_number             :string
+#  current_address_L1       :string
+#  current_address_L2       :string
+#  current_city             :string
+#  current_country          :string
+#  skills                   :text
+#  work_visa                :boolean
+#  visa_exp_date            :date
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  passport_country         :string
+#  passport_number          :string
+#  passport_expiration_date :date
+#  head_pic_file_name       :string
+#  head_pic_content_type    :string
+#  head_pic_file_size       :integer
+#  head_pic_updated_at      :datetime
+#  body_pic_file_name       :string
+#  body_pic_content_type    :string
+#  body_pic_file_size       :integer
+#  body_pic_updated_at      :datetime
+#
+
 class Cv < ApplicationRecord
   belongs_to :user
 

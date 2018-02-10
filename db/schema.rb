@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202102106) do
+ActiveRecord::Schema.define(version: 20180210210300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180202102106) do
     t.string "current_city"
     t.string "current_country"
     t.text "skills"
-    t.boolean "work_visa", default: true
+    t.boolean "work_visa"
     t.date "visa_exp_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,6 +82,10 @@ ActiveRecord::Schema.define(version: 20180202102106) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "summary"
+    t.bigint "agent_id"
+    t.bigint "user_id"
+    t.index ["agent_id"], name: "index_jobs_on_agent_id"
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "jobs_users", id: false, force: :cascade do |t|
@@ -118,7 +122,7 @@ ActiveRecord::Schema.define(version: 20180202102106) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
+    t.boolean "admin"
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -128,6 +132,8 @@ ActiveRecord::Schema.define(version: 20180202102106) do
   add_foreign_key "cvs", "users"
   add_foreign_key "educations", "cvs"
   add_foreign_key "educations", "users"
+  add_foreign_key "jobs", "agents"
+  add_foreign_key "jobs", "users"
   add_foreign_key "jobs_users", "jobs"
   add_foreign_key "jobs_users", "users"
   add_foreign_key "languages", "cvs"

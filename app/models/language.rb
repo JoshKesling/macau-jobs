@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: languages
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  cv_id      :integer
+#  name       :string
+#  read       :string
+#  write      :string
+#  speak      :string
+#  listen     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Language < ApplicationRecord
   belongs_to :user, inverse_of: :language
   belongs_to :cv

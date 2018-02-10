@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'annotate', '~> 2.7', '>= 2.7.2'
 gem 'aws-sdk-rails', '~> 2.0', '>= 2.0.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'cancancan', '~> 2.1', '>= 2.1.3'

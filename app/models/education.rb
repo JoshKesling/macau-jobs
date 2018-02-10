@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: educations
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  cv_id           :integer
+#  name            :string
+#  city            :string
+#  country         :string
+#  years_attended  :integer
+#  year_completed  :integer
+#  months_attended :integer
+#  graduated       :boolean
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class Education < ApplicationRecord
   belongs_to :user, inverse_of: :education
   belongs_to :cv
