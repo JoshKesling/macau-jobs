@@ -1,5 +1,5 @@
 class Education < ApplicationRecord
-  belongs_to :user, through: :cv, inverse_of: :education
+  belongs_to :user, inverse_of: :education
   belongs_to :cv
 
   validates :name, length: { maximum: 50 }, allow_blank: true

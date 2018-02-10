@@ -1,5 +1,5 @@
 class Language < ApplicationRecord
-  belongs_to :user, through: :cv, inverse_of: :language
+  belongs_to :user, inverse_of: :language
   belongs_to :cv
 
   validates :name, length: { in: 2..20 }, allow_blank: true

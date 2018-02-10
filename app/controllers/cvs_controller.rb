@@ -1,6 +1,5 @@
 class CvsController < ApplicationController
-  before_action :set_cv, only: [:show, :edit, :update, :destroy]
-  before_action :country_prefs, only: [:new, :edit]
+  before_action :set_cv, only: %i[show edit update destroy]
 
   # GET /cvs
   # GET /cvs.json
@@ -10,22 +9,22 @@ class CvsController < ApplicationController
 
   # GET /cvs/1
   # GET /cvs/1.json
-  def show
-  end
+  def show; end
 
   # GET /cvs/new
   def new
-    @cv = Cv.new
+    @user = current_user
+    @cv = @user.build_cv
   end
 
   # GET /cvs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /cvs
   # POST /cvs.json
   def create
-    @cv = Cv.new(cv_params)
+    @user = current_user
+    @cv = @user.create_cv(cv_params)
 
     respond_to do |format|
       if @cv.save
@@ -62,35 +61,36 @@ class CvsController < ApplicationController
     end
   end
 
+  protected
+
+  def is_complete?
+    self.cv.attributes.each do |atr|
+      return false if atr.blank?
+    end
+    self.cv.educations.each do |edu|
+      edu.attributes.each do |ea|
+        return false if ea.blank?
+      end
+    end
+    self.cv.languages.each do |exp|
+      exp.attributes.each do |exa|
+        return false if exa.blank?
+      end
+    end
+    true
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cv
-      @cv = Cv.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cv_params
-      params.require(:cv).permit(:user_id, :first_name, :middle_name, :last_name, :age, :height, :weight, :marital_status, :children, :phone_number, :current_address_L1, :current_address_L2, :current_city, :current_country, :skills, :work_visa, :visa_exp_date, :nationality)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cv
+    @cv = Cv.find(params[:id])
+  end
 
-    # Set the list of preferred countries.
-    def country_prefs
-      @countries = %w[Indonesia
-                      Philippines
-                      Malaysia
-                      Thailand
-                      India
-                      Nepal
-                      Singapore
-                      Bangladesh
-                      Cambodia
-                      China
-                      French\ Polynesia
-                      Hong\ Kong
-                      Macao
-                      Micronesia
-                      Sri\ Lanka
-                      Taiwan
-                      Viet\ Nam]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cv_params
+    params.require(:cv).permit(:user_id, :first_name, :middle_name, :last_name, :age, :height, :weight, :marital_status, :children, :phone_number, :current_address_L1, :current_address_L2, :current_city, :current_country, :skills, :work_visa, :visa_exp_date, :nationality)
+  end
+
+  
 end

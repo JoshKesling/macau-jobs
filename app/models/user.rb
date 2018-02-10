@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :cv
+  has_one :cv, dependent: :destroy
 
   has_many :educations, through: :cvs, inverse_of: :user
   has_many :languages, through: :cvs, inverse_of: :user
@@ -34,4 +34,6 @@ class User < ApplicationRecord
   def validate_username
     errors.add(:username, :invalid) if User.where(email: username).exists?
   end
+  
+
 end

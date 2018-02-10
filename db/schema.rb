@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180202102106) do
     t.string "current_city"
     t.string "current_country"
     t.text "skills"
-    t.boolean "work_visa"
+    t.boolean "work_visa", default: true
     t.date "visa_exp_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20180202102106) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -20,7 +20,11 @@
   h1 {
     font-size: 3rem;
   }
+  .block-link-sm {
+    display: block;
+  }
 }
+
 @media screen and (min-width: 768px) {
   .pull-right-lg {
     float: right;
@@ -28,9 +32,11 @@
     margin-top: 15px;
   }
 }
+
 .content {
   margin-top: 80px;
 }
+
 .radio,
 .checkbox {
   margin-top: 0;
@@ -52,6 +58,7 @@
     color: #888;
   }
 }
+
 .agent-title {
   font-size: 1.8rem;
   font-weight: 500;
@@ -60,6 +67,16 @@
     color: #000;
   }
 }
+
 .agent-name {
   font-weight: 600;
+}
+
+.panel-footer {
+  a {
+    color: #888;
+  }
+  a:hover {
+    color: #fff;
+  }
 }

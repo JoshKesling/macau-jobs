@@ -1,25 +1,28 @@
-= simple_form_for(@cv) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.association :user
-    = f.input :first_name
-    = f.input :middle_name
-    = f.input :last_name
-    = f.input :age
-    = f.input :height
-    = f.input :weight
-    = f.input :marital_status
-    = f.input :children
-    = f.input :phone_number
-    = f.input :current_address_L1
-    = f.input :current_address_L2
-    = f.input :current_city
-    = f.input :current_country, { priority: @countries, selected: "MO" }
-    = f.input :skills
-    = f.input :work_visa
-    = f.input :visa_exp_date
-    = f.input :nationality, as: :country, priority: @countries
-
-  .form-actions
-    = f.button :submit
+.container-fluid
+  = simple_form_for(@cv, url: new_user_cv_path) do |f|
+    = f.error_notification
+  
+    .form-inputs
+      .row
+        = f.input :first_name, wrapper_html: { class: 'col-sm-4' }
+        = f.input :middle_name, wrapper_html: { class: 'col-sm-4' }
+        = f.input :last_name, wrapper_html: { class: 'col-sm-4' }
+      .row
+        = f.input :age, wrapper_html: { class: 'col-md-2 col-sm-4' }
+        = f.input :height, wrapper_html: { class: 'col-md-2 col-sm-4' }
+        = f.input :weight, wrapper_html: { class: 'col-md-2 col-sm-4' }
+        = f.input :marital_status, wrapper_html: { class: 'col-md-3 col-sm-6' }
+        = f.input :children, wrapper_html: { class: 'col-md-3 col-sm-6' }
+      = f.input :phone_number
+      = f.input :current_address_L1
+      = f.input :current_address_L2
+      = f.input :current_city
+      = f.input :current_country, { priority: Cv::PREFERRED_COUNTRIES, selected: "MO" }
+      = f.input :skills
+      = f.input :work_visa
+      = f.input :visa_exp_date
+      = f.input :passport_country, as: :country, priority: Cv::PREFERRED_COUNTRIES
+      = f.input :passport_expiration_date
+  
+    .form-actions
+      = f.button :submit
