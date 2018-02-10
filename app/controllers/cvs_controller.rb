@@ -1,5 +1,6 @@
 class CvsController < ApplicationController
   before_action :set_cv, only: %i[show edit update destroy]
+  before_action :set_user
 
   # GET /cvs
   # GET /cvs.json
@@ -13,7 +14,6 @@ class CvsController < ApplicationController
 
   # GET /cvs/new
   def new
-    @user = current_user
     @cv = @user.build_cv
   end
 
@@ -23,12 +23,11 @@ class CvsController < ApplicationController
   # POST /cvs
   # POST /cvs.json
   def create
-    @user = current_user
     @cv = @user.create_cv(cv_params)
 
     respond_to do |format|
       if @cv.save
-        format.html { redirect_to @cv, notice: 'Cv was successfully created.' }
+        format.html { redirect_to user_cv_url(@user, @cv), notice: 'Cv was successfully created.' }
         format.json { render :show, status: :created, location: @cv }
       else
         format.html { render :new }
@@ -92,5 +91,8 @@ class CvsController < ApplicationController
     params.require(:cv).permit(:user_id, :first_name, :middle_name, :last_name, :age, :height, :weight, :marital_status, :children, :phone_number, :current_address_L1, :current_address_L2, :current_city, :current_country, :skills, :work_visa, :visa_exp_date, :nationality)
   end
 
+  def set_user
+    @user = current_user
+  end
   
 end

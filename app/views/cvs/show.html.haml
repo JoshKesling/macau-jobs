@@ -53,8 +53,8 @@
   = @cv.visa_exp_date
 %p
   %b Nationality:
-  = @cv.nationality
+  = @cv.passport_country
 
-= link_to 'Edit', edit_cv_path(@cv)
+= link_to 'Edit', edit_user_cv_path(@cv)
 \|
-= link_to 'Back', cvs_path
+= link_to 'Back', user_cv_path
