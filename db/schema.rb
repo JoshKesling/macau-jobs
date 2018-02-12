@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210210300) do
+ActiveRecord::Schema.define(version: 20180212070400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,6 @@ ActiveRecord::Schema.define(version: 20180210210300) do
     t.string "marital_status"
     t.integer "children"
     t.string "phone_number"
-    t.string "current_address_L1"
-    t.string "current_address_L2"
     t.string "current_city"
     t.string "current_country"
     t.text "skills"
@@ -55,6 +53,7 @@ ActiveRecord::Schema.define(version: 20180210210300) do
     t.string "body_pic_content_type"
     t.integer "body_pic_file_size"
     t.datetime "body_pic_updated_at"
+    t.string "current_address"
     t.index ["user_id"], name: "index_cvs_on_user_id"
   end
 

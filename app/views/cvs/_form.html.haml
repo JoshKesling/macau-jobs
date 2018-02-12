@@ -14,15 +14,37 @@
         = f.input :marital_status, wrapper_html: { class: 'col-md-3 col-sm-6' }
         = f.input :children, wrapper_html: { class: 'col-md-3 col-sm-6' }
       = f.input :phone_number
-      = f.input :current_address_L1
-      = f.input :current_address_L2
+      = f.input :current_address
       = f.input :current_city
       = f.input :current_country, { priority: Cv::PREFERRED_COUNTRIES, selected: "MO" }
+      %hr
+      .row
+        %strong Please indicate known languages and ability level in each:
+        #languages
+          = f.simple_fields_for :languages do |language|
+            .row
+              = language.input :name, disabled: true, wrapper_html: { class: 'col-sm-4' }
+              = language.input :read, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+              = language.input :write, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+              = language.input :speak, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+              = language.input :listen, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+          .links
+            = link_to_add_association 'Add Language', f, :languages, class: 'btn btn-success btn-sm'
+      %hr
+      .row
+        %strong Please give any education and indicate where and how long you attended:
+        #educations
+          = f.simple_fields_for :educations do |education|
+            = render 'education_fields', f: education
+          .links
+            = link_to_add_association 'Add Education', f, :educations, class: 'btn btn-success btn-sm'
       = f.input :skills
       = f.input :work_visa
       = f.input :visa_exp_date
       = f.input :passport_country, as: :country, priority: Cv::PREFERRED_COUNTRIES
       = f.input :passport_expiration_date
+      = f.input :head_pic, as: :file
+      = f.input :body_pic, as: :file
   
     .form-actions
       = f.button :submit

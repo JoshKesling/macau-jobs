@@ -13,8 +13,6 @@
 #  marital_status           :string
 #  children                 :integer
 #  phone_number             :string
-#  current_address_L1       :string
-#  current_address_L2       :string
 #  current_city             :string
 #  current_country          :string
 #  skills                   :text
@@ -33,13 +31,16 @@
 #  body_pic_content_type    :string
 #  body_pic_file_size       :integer
 #  body_pic_updated_at      :datetime
+#  current_address          :string
 #
 
 class Cv < ApplicationRecord
   belongs_to :user
 
-  has_many :educations, dependent: :destroy
-  has_many :languages, dependent: :destroy
+  has_many :educations, dependent: :destroy, inverse_of: :cv
+  has_many :languages, dependent: :destroy, inverse_of: :cv
+  accepts_nested_attributes_for :educations, allow_destroy: true
+  accepts_nested_attributes_for :languages, allow_destroy: true
 
   has_attached_file :head_pic, styles: { thumb: '100x100', small: '300x300', large: '600x600' }
   validates_attachment_content_type :head_pic, content_type: %w[image/jpg image/jpeg image/png image/gif], size: { in: 0..1500.kilobytes }, if: proc { |a| a.head_pic.present? }
@@ -55,8 +56,7 @@ class Cv < ApplicationRecord
   validates :marital_status, inclusion: { in: %w[Single Married Separated Divorced] }
   validates :children, numericality: { only_integer: true }, allow_blank: true
   validates :phone_number, length: { in: 7..25 }, allow_blank: true
-  validates :current_address_L1, length: { maximum: 100 }, allow_blank: true
-  validates :current_address_L2, length: { maximum: 100 }, allow_blank: true
+  validates :current_address, length: { maximum: 255 }, allow_blank: true
   validates :current_city, length: { maximum: 50 }, allow_blank: true
   validates :current_country, length: { maximum: 50 }, allow_blank: true
   validates :skills, length: { maximum: 250 }, allow_blank: true
@@ -66,8 +66,6 @@ class Cv < ApplicationRecord
   validates :passport_number, length: { in: 5..25 }, allow_blank: true
   validates :passport_expiration_date, timeliness: { on_or_after: -> { Date.current } }, allow_blank: true
 
-  accepts_nested_attributes_for :educations
-  accepts_nested_attributes_for :languages
 
   # Set the list of preferred countries.
   PREFERRED_COUNTRIES = %w[Indonesia
@@ -87,5 +85,6 @@ class Cv < ApplicationRecord
                     Sri\ Lanka
                     Taiwan
                     Viet\ Nam]
+ 
 
 end

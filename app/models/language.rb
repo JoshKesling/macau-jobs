@@ -19,8 +19,13 @@ class Language < ApplicationRecord
   belongs_to :cv
 
   validates :name, length: { in: 2..20 }, allow_blank: true
-  validates :read, inclusion: { in: %w(None, Basic, Good, Fluent) }
-  validates :write, inclusion: { in: %w(None, Basic, Good, Fluent) }
-  validates :speak, inclusion: { in: %w(None, Basic, Good, Fluent) }
-  validates :listen, inclusion: { in: %w(None, Basic, Good, Fluent) }
+  validates :read, inclusion: { in: %w(None Poor Good Perfect) }
+  validates :write, inclusion: { in: %w(None Poor Good Perfect) }
+  validates :speak, inclusion: { in: %w(None Poor Good Perfect) }
+  validates :listen, inclusion: { in: %w(None Poor Good Perfect) }
+
+  # Set the selection options for the ability levels
+  def language_levels
+   %w(None Poor Good Perfect)
+  end
 end

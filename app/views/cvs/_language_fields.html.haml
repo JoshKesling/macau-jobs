@@ -1,0 +1,7 @@
+.row.nested-fields
+  = f.input :name, wrapper_html: { class: 'col-sm-4' }
+  = f.input :read, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+  = f.input :write, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+  = f.input :speak, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+  = f.input :listen, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+  = link_to_remove_association "Remove Language", f

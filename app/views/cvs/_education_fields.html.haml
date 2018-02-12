@@ -1,0 +1,9 @@
+.nested-fields
+  = f.input :name
+  = f.input :city
+  = f.input :country
+  = f.input :years_attended
+  = f.input :months_attended
+  = f.input :year_completed
+  = f.input :graduated, as: :boolean
+  = link_to_remove_association "Remove Education", f
