@@ -10,8 +10,6 @@
           = f.input :first_name, label: 'First', wrapper_html: { class: 'col-sm-4' }
           = f.input :middle_name, label: 'Middle', wrapper_html: { class: 'col-sm-4' }
           = f.input :last_name, label: 'Last', wrapper_html: { class: 'col-sm-4' }
-      %br
-      %br
       %fieldset
         %legend
           Personal Information
@@ -21,8 +19,6 @@
           = f.input :weight, collection: 30..130, selected: 60, wrapper_html: { class: 'col-md-2 col-sm-4' }
           = f.input :marital_status, collection: ['Single', 'Married', 'Separated', 'Divorced', 'Widowed'], selected: 'Single', wrapper_html: { class: 'col-md-3 col-sm-6' }
           = f.input :children, collection: 0..15, selected: 0, wrapper_html: { class: 'col-md-3 col-sm-6' }
-      %br
-      %br
       %fieldset
         %legend
           Local Address and Phone Number
@@ -31,8 +27,6 @@
           = f.input :current_city, label: 'City', input_html: { value: 'Macau' }, wrapper_html: { class: 'col-sm-4' }
           = f.input :current_country, priority: Cv::PREFERRED_COUNTRIES, selected: "MO", wrapper_html: { class: 'col-sm-4' }
           = f.input :phone_number, wrapper_html: { class: 'col-sm-4' }
-      %br
-      %br
       %fieldset
         %legend
           Languages
@@ -50,45 +44,61 @@
             %hr
           .links
             = link_to_add_association 'Add Language', f, :languages, class: 'btn btn-success btn-sm'
-      %br
-      %br
-      %br
       %fieldset
         %legend
           Education
-        %strong Please give any education and indicate where and how long you attended:   
+        %strong Please give any education and indicate where and how long you attended:
+        %br
+        %br
         #educations
           = f.simple_fields_for :educations do |education|
             = render 'education_fields', f: education
           .links
             = link_to_add_association 'Add Education', f, :educations, class: 'btn btn-success btn-sm'
-      %br
-      %br
       %fieldset
         %legend
           Skills
-        = f.input :skills, label: 'Please list any Job Skills you have:'
-      %br
+        .form-group
+          = f.input :skills, label: 'Please list any Job Skills you have:', wrapper_html: { class: 'col-sm-12' }
       %fieldset
         %legend
           Work Visa
         .form-group
-          = f.input :work_visa, as: :radio_buttons, label: "Do you have a work visa?", collection: [['Yes', true], ['No', false]], checked: true, item_wrapper_class: 'radio-inline', wrapper_html: { id: 'work-visa' }
-          = f.input :visa_country, label: 'Work Visa Country', collection: ['Hong Kong', 'Macau', 'China'], input_html: { class: 'work-visa-hide' }, wrapper_html: { class: 'col-xs-3'}
-          = f.input :visa_exp_date, label: 'Visa Expiration Date', start_year: Date.today.year, end_year: Date.today.year + 40, include_blank: true, item_wrapper_class: 'form-inline', input_html: { class: 'work-visa-hide'}, wrapper_html: { class: 'col-xs-9'}
-      %br
-      %br
+          = f.input :work_visa, as: :radio_buttons, label: "Do you have a work visa?", collection: [['Yes', true], ['No', false]], checked: true, item_wrapper_class: 'radio-inline', wrapper_html: { id: 'work-visa' }, wrapper_html: { class: 'col-sm-12' }
+          = f.input :visa_country, label: 'Work Visa Country', collection: ['Hong Kong', 'Macau', 'China'], input_html: { class: 'work-visa-hide' }, wrapper_html: { class: 'col-sm-6'}
+          = f.input :visa_exp_date, label: 'Visa Expiration Date', start_year: Date.today.year, end_year: Date.today.year + 40, include_blank: true, item_wrapper_class: 'form-inline', input_html: { class: 'work-visa-hide'}, wrapper_html: { class: 'col-sm-12'}
       %fieldset
         %legend
           Passport  
         .form-group  
           = f.input :passport_country, label: 'Passport Country', as: :country, priority: Cv::PREFERRED_COUNTRIES
           = f.input :passport_expiration_date, label: 'Expiration Date', start_year: Date.today.year, end_year: Date.today.year + 40
-      = f.input :head_pic, as: :file
-      = f.input :body_pic, as: :file
+      %fieldset
+        %legend
+          Photos
+        .form-group
+          %strong.col-xs-12 You will need 2 pictures of yourself.
+          %br
+          %strong.col-xs-12 1 needs to be a clear photo of your face.
+          %br
+          %strong.col-xs-12 1 needs to be a full-body photo.
+          %br
+          %br
+          .col-sm-6
+            .panel.panel-primary
+              .panel-heading
+                Face Photo
+              .panel-body
+                = f.input :head_pic, as: :file, label: false
+          .col-sm-6
+            .panel.panel-primary
+              .panel-heading
+                Body Photo
+              .panel-body
+                = f.input :body_pic, as: :file, label: false
   
     .form-actions
-      = f.button :submit
+      = f.button :submit, 'Save My CV', class: 'btn-success btn-lg'
 
 :javascript 
   $('input[type=radio]').on("change", function() {

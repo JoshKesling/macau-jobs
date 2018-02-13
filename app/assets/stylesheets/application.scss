@@ -33,6 +33,16 @@
   }
 }
 
+@media only screen and (max-width: 576px) {
+  .radio-inline {
+    display: block;
+  }
+  
+  .radio-inline + .radio-inline {
+    margin-left: 0;
+  }
+}
+
 .content {
   margin-top: 80px;
 }
@@ -79,4 +89,10 @@
   a:hover {
     color: #fff;
   }
+}
+fieldset {
+  margin-bottom: 50px;
+}
+.btn {
+  font-weight: bold;
 }
