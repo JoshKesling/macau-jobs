@@ -1,15 +1,16 @@
 .nested-fields
-  = f.input :name, label: 'School Name'
-  .row
+  .form-group
+    = f.input :name, label: 'School Name', wrapper_html: { class: 'col-sm-12' }
     = f.input :city, wrapper_html: { class: 'col-sm-6' }
     = f.input :country, priority: Cv::PREFERRED_COUNTRIES, selected: 'ID', wrapper_html: { class: 'col-sm-6' }
-  %strong How long did you attend:
-  %br
-  %br
-  .row
+    -# %br
+    -# %br
+  .form-group
+    %strong.col-xs-3 How long did you attend:
     = f.input :years_attended, label: 'Years', collection: 0..20, selected: 0, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-xs-2' }
     = f.input :months_attended, label: 'Months', collection: 0..12, selected: 0, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-xs-2' }
-    = f.input :year_completed, label: 'Finished', as: :date, start_year: Date.today.year - 70, end_year: Date.today.year, discard_day: true, discard_month: true, wrapper_html: { class: 'col-xs-2' }
-    = f.input :graduated, as: :radio_buttons, label: "Did you graduate?", item_wrapper_class: 'radio-inline', collection: [['Yes', true], ['No', false]], wrapper_html: { class: 'col-xs-6' }
-  = link_to_remove_association "Remove Education", f
+    = f.input :year_completed, label: 'Year Completed', as: :date, start_year: Date.today.year - 70, end_year: Date.today.year, discard_day: true, discard_month: true, selected: 2.years.ago, wrapper_html: { class: 'col-xs-4' }
+  = f.input :graduated, as: :radio_buttons, label: "Did you graduate?", item_wrapper_class: 'radio-inline', collection: [['Yes', true], ['No', false]]
+  .links.clearfix
+    = link_to_remove_association "Remove Education", f, class: 'btn btn-danger btn-sm pull-right'
   %hr

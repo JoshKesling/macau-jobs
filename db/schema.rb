@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212070400) do
+ActiveRecord::Schema.define(version: 20180213091731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180212070400) do
     t.integer "body_pic_file_size"
     t.datetime "body_pic_updated_at"
     t.string "current_address"
+    t.string "visa_country"
     t.index ["user_id"], name: "index_cvs_on_user_id"
   end
 
