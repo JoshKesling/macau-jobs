@@ -20,6 +20,7 @@ class CvsController < ApplicationController
     @cv.languages.build(name: 'English')
     @cv.languages.build(name: 'Cantonese')
     @cv.languages.build(name: 'Mandarin')
+    @cv.educations.new
   end
 
   # GET /cvs/1/edit

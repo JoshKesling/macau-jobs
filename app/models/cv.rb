@@ -53,7 +53,7 @@ class Cv < ApplicationRecord
   validates :age, numericality: { only_integer: true }, allow_blank: true
   validates :height, numericality: { only_integer: true }, allow_blank: true
   validates :weight, numericality: { only_integer: true }, allow_blank: true
-  validates :marital_status, inclusion: { in: %w[Single Married Separated Divorced] }
+  validates :marital_status, inclusion: { in: %w[Single Married Separated Divorced Widowed] }
   validates :children, numericality: { only_integer: true }, allow_blank: true
   validates :phone_number, length: { in: 7..25 }, allow_blank: true
   validates :current_address, length: { maximum: 255 }, allow_blank: true

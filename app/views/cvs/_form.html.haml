@@ -3,36 +3,61 @@
     = f.error_notification
   
     .form-inputs
-      .row
-        = f.input :first_name, wrapper_html: { class: 'col-sm-4' }
-        = f.input :middle_name, wrapper_html: { class: 'col-sm-4' }
-        = f.input :last_name, wrapper_html: { class: 'col-sm-4' }
-      .row
-        = f.input :age, wrapper_html: { class: 'col-md-2 col-sm-4' }
-        = f.input :height, wrapper_html: { class: 'col-md-2 col-sm-4' }
-        = f.input :weight, wrapper_html: { class: 'col-md-2 col-sm-4' }
-        = f.input :marital_status, wrapper_html: { class: 'col-md-3 col-sm-6' }
-        = f.input :children, wrapper_html: { class: 'col-md-3 col-sm-6' }
-      = f.input :phone_number
-      = f.input :current_address
-      = f.input :current_city
-      = f.input :current_country, { priority: Cv::PREFERRED_COUNTRIES, selected: "MO" }
-      %hr
-      .row
+      %fieldset
+        %legend
+          Name
+        .form-group
+          = f.input :first_name, label: 'First', wrapper_html: { class: 'col-sm-4' }
+          = f.input :middle_name, label: 'Middle', wrapper_html: { class: 'col-sm-4' }
+          = f.input :last_name, label: 'Last', wrapper_html: { class: 'col-sm-4' }
+      %br
+      %br
+      %fieldset
+        %legend
+          Personal Information
+        .form-group
+          = f.input :age, collection: 10..100, selected: 21, wrapper_html: { class: 'col-md-2 col-sm-4' }
+          = f.input :height, collection: 120..220, selected: 165, wrapper_html: { class: 'col-md-2 col-sm-4' }
+          = f.input :weight, collection: 30..130, selected: 60, wrapper_html: { class: 'col-md-2 col-sm-4' }
+          = f.input :marital_status, collection: ['Single', 'Married', 'Separated', 'Divorced', 'Widowed'], selected: 'Single', wrapper_html: { class: 'col-md-3 col-sm-6' }
+          = f.input :children, collection: 0..15, selected: 0, wrapper_html: { class: 'col-md-3 col-sm-6' }
+      %br
+      %br
+      %fieldset
+        %legend
+          Local Address and Phone Number
+        = f.input :current_address, as: :text, label: 'Street Address', input_html: { rows: 3 }
+        .row
+          = f.input :current_city, label: 'City', input_html: { value: 'Macau' }, wrapper_html: { class: 'col-sm-4' }
+          = f.input :current_country, priority: Cv::PREFERRED_COUNTRIES, selected: "MO", wrapper_html: { class: 'col-sm-4' }
+          = f.input :phone_number, wrapper_html: { class: 'col-sm-4' }
+      %br
+      %br
+      %fieldset
+        %legend
+          Languages
         %strong Please indicate known languages and ability level in each:
+        %br
+        %br
         #languages
           = f.simple_fields_for :languages do |language|
             .row
               = language.input :name, disabled: true, wrapper_html: { class: 'col-sm-4' }
-              = language.input :read, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
-              = language.input :write, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
-              = language.input :speak, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
-              = language.input :listen, collection: @language_levels, wrapper_html: { class: 'col-sm-2' }
+              = language.input :read, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
+              = language.input :write, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
+              = language.input :speak, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
+              = language.input :listen, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
+            %hr
           .links
             = link_to_add_association 'Add Language', f, :languages, class: 'btn btn-success btn-sm'
-      %hr
-      .row
+      %br
+      %br
+      %fieldset
+        %legend
+          Education
         %strong Please give any education and indicate where and how long you attended:
+        %br
+        %br
         #educations
           = f.simple_fields_for :educations do |education|
             = render 'education_fields', f: education
