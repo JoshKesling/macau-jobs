@@ -15,14 +15,13 @@
 #
 
 class Language < ApplicationRecord
-  belongs_to :user, inverse_of: :language
   belongs_to :cv
 
   validates :name, length: { in: 2..20 }, allow_blank: true
-  validates :read, inclusion: { in: %w(None Poor Good Perfect) }
-  validates :write, inclusion: { in: %w(None Poor Good Perfect) }
-  validates :speak, inclusion: { in: %w(None Poor Good Perfect) }
-  validates :listen, inclusion: { in: %w(None Poor Good Perfect) }
+  validates :read, inclusion: { in: %w(None Poor Good Perfect) }, allow_blank: true
+  validates :write, inclusion: { in: %w(None Poor Good Perfect) }, allow_blank: true
+  validates :speak, inclusion: { in: %w(None Poor Good Perfect) }, allow_blank: true
+  validates :listen, inclusion: { in: %w(None Poor Good Perfect) }, allow_blank: true
 
   # Set the selection options for the ability levels
   def language_levels

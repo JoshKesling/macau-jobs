@@ -22,8 +22,6 @@
 class User < ApplicationRecord
   has_one :cv, dependent: :destroy
 
-  has_many :educations, through: :cvs, inverse_of: :user
-  has_many :languages, through: :cvs, inverse_of: :user
   has_many :jobs
 
   # Include default devise modules. Others available are:

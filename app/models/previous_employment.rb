@@ -16,6 +16,12 @@
 #
 
 class PreviousEmployment < ApplicationRecord
-  belongs_to :user
   belongs_to :cv
+
+  validates :employer_name, length: { maximum: 100 }, allow_blank: true
+  validates :job_duties, length: { maximum: 255 },allow_blank: true
+  validates :months, numericality: { only_integer: true }, inclusion: { in: 0..12 },allow_blank: true
+  validates :years, numericality: { only_integer: true }, inclusion: { in: 0..100 }, allow_blank: true
+  validates :ended_year, timeliness: { on_or_before: lambda { Date.current } }, allow_blank: true
+  validates :location, length: { maximum: 255 },allow_blank: true
 end

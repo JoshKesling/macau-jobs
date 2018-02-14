@@ -33,18 +33,22 @@
 #  body_pic_updated_at      :datetime
 #  current_address          :string
 #  visa_country             :string
+#  completed                :boolean
 #
 
 class Cv < ApplicationRecord
   belongs_to :user
-
-  has_many :educations, dependent: :destroy, inverse_of: :cv
-  has_many :languages, dependent: :destroy, inverse_of: :cv
-  has_many :previous_employments, dependent: :destroy, inverse_of: :cv
+  
+  has_many :educations, dependent: :destroy
+  has_many :languages, dependent: :destroy
+  has_many :previous_employments, dependent: :destroy
   accepts_nested_attributes_for :educations, allow_destroy: true
   accepts_nested_attributes_for :languages, allow_destroy: true
   accepts_nested_attributes_for :previous_employments, allow_destroy: true
-
+  
+  after_initialize :init
+  before_save :is_complete?
+  
   has_attached_file :head_pic, styles: { thumb: '100x100', small: '300x300', large: '600x600' }
   validates_attachment_content_type :head_pic, content_type: %w[image/jpg image/jpeg image/png image/gif], size: { in: 0..1500.kilobytes }, if: proc { |a| a.head_pic.present? }
   has_attached_file :body_pic, styles: { thumb: '100x100', small: '300x300', large: '600x600' }
@@ -69,6 +73,31 @@ class Cv < ApplicationRecord
   validates :passport_number, length: { in: 5..25 }, allow_blank: true
   validates :passport_expiration_date, timeliness: { on_or_after: -> { Date.current } }, allow_blank: true
 
+
+  def init
+    self.completed = false if self.completed.nil?
+  end
+
+  def is_complete?
+    self.completed = true
+    self.attributes.each do |atr|
+      self.completed = false if atr.blank?
+      return if !self.completed
+    end
+    self.educations.each do |edu|
+      edu.attributes.each do |ea|
+        self.completed = false if edu.blank?
+        return if !self.completed
+      end
+    end
+    self.languages.each do |exp|
+      exp.attributes.each do |exa|
+        self.completed = false if exa.blank?
+        return if !self.completed
+      end
+    end
+    true
+  end
 
   # Set the list of preferred countries.
   PREFERRED_COUNTRIES = %w[Indonesia

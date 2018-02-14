@@ -20,8 +20,8 @@ class CvsController < ApplicationController
     @cv.languages.build(name: 'English')
     @cv.languages.build(name: 'Cantonese')
     @cv.languages.build(name: 'Mandarin')
-    @cv.educations.new
-    @cv.previous_employments.new
+    @cv.educations.build
+    @cv.previous_employments.build
   end
 
   # GET /cvs/1/edit
@@ -67,25 +67,6 @@ class CvsController < ApplicationController
     end
   end
 
-  protected
-
-  def is_complete?
-    self.cv.attributes.each do |atr|
-      return false if atr.blank?
-    end
-    self.cv.educations.each do |edu|
-      edu.attributes.each do |ea|
-        return false if ea.blank?
-      end
-    end
-    self.cv.languages.each do |exp|
-      exp.attributes.each do |exa|
-        return false if exa.blank?
-      end
-    end
-    true
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -95,7 +76,7 @@ class CvsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cv_params
-    params.require(:cv).permit(:user_id,
+    params.require(:cv).permit(
       :first_name,
       :middle_name,
       :last_name,
@@ -110,6 +91,7 @@ class CvsController < ApplicationController
       :skills,
       :work_visa,
       :visa_exp_date,
+      :visa_country,
       :passport_country,
       :passport_number,
       :passport_expiration_date,
@@ -122,34 +104,45 @@ class CvsController < ApplicationController
       :body_pic_file_size,
       :body_pic_updated_at,
       :current_address,
-      languages_attributes: [:name,
+      :completed,
+      languages_attributes: [:id,
+        :name,
         :read,
         :write,
         :speak,
         :listen,
         :_destroy],
-      educations_attributes: [:name,
+      educations_attributes: [:id,
+        :name,
         :city,
         :country,
         :years_attended,
         :year_completed,  
         :months_attended,
-        :graduated],
-      previous_employments_attributes: [:employer_name,
+        :graduated,
+        :_destroy],
+      previous_employments_attributes: [:id,
+        :employer_name,
         :job_duties,
         :months,
         :years,
         :ended_year, 
-        :location])
+        :location,
+        :_destroy])
       
   end
 
   def set_user
-    @user = current_user
+    @user = current_user if user_signed_in?
   end
 
   def set_language_levels
     @language_levels = %w(None Poor Good Perfect)
-   end
+  end
+
+  def set_end_years
+    @end_years = 111
+  end
+
 end
 

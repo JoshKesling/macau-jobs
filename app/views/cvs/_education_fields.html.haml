@@ -9,7 +9,7 @@
     %strong.col-sm-3 How long did you attend:
     = f.input :years_attended, label: 'Years', collection: 0..20, selected: 0, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-sm-2' }
     = f.input :months_attended, label: 'Months', collection: 0..12, selected: 0, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-sm-2' }
-    = f.input :year_completed, label: 'Year Completed', as: :date, start_year: Date.today.year, end_year: Date.today.year - 70, discard_day: true, discard_month: true, selected: 2.years.ago, wrapper_html: { class: 'col-sm-4' }
+    = f.input :year_completed, label: 'Year Completed', collection: 1900..2100, wrapper_html: { class: 'col-sm-4' }
   .form-group
     = f.input :graduated, as: :radio_buttons, label: "Did you graduate?", item_wrapper_class: 'radio-inline', collection: [['Yes', true], ['No', false]], wrapper_html: { class: 'col-sm-12' }
   .links.clearfix
