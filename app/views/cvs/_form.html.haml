@@ -57,6 +57,17 @@
             = link_to_add_association 'Add Education', f, :educations, class: 'btn btn-success btn-sm'
       %fieldset
         %legend
+          Previous Jobs
+        %strong What jobs have you done before:
+        %br
+        %br
+        #previous_employments
+          = f.simple_fields_for :previous_employments do |previous_employment|
+            = render 'previous_employment_fields', f: previous_employment
+          .links
+            = link_to_add_association 'Add Job', f, :previous_employments, class: 'btn btn-success btn-sm'
+      %fieldset
+        %legend
           Skills
         .form-group
           = f.input :skills, label: 'Please list any Job Skills you have:', wrapper_html: { class: 'col-sm-12' }

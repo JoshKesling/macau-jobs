@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213091731) do
+ActiveRecord::Schema.define(version: 20180214101005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,21 @@ ActiveRecord::Schema.define(version: 20180213091731) do
     t.index ["user_id"], name: "index_languages_on_user_id"
   end
 
+  create_table "previous_employments", force: :cascade do |t|
+    t.string "employer_name"
+    t.text "job_duties"
+    t.integer "months"
+    t.integer "years"
+    t.integer "ended_year"
+    t.string "location"
+    t.bigint "user_id"
+    t.bigint "cv_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_previous_employments_on_cv_id"
+    t.index ["user_id"], name: "index_previous_employments_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -138,4 +153,6 @@ ActiveRecord::Schema.define(version: 20180213091731) do
   add_foreign_key "jobs_users", "users"
   add_foreign_key "languages", "cvs"
   add_foreign_key "languages", "users"
+  add_foreign_key "previous_employments", "cvs"
+  add_foreign_key "previous_employments", "users"
 end

@@ -32,6 +32,7 @@
 #  body_pic_file_size       :integer
 #  body_pic_updated_at      :datetime
 #  current_address          :string
+#  visa_country             :string
 #
 
 class Cv < ApplicationRecord
@@ -39,8 +40,10 @@ class Cv < ApplicationRecord
 
   has_many :educations, dependent: :destroy, inverse_of: :cv
   has_many :languages, dependent: :destroy, inverse_of: :cv
+  has_many :previous_employments, dependent: :destroy, inverse_of: :cv
   accepts_nested_attributes_for :educations, allow_destroy: true
   accepts_nested_attributes_for :languages, allow_destroy: true
+  accepts_nested_attributes_for :previous_employments, allow_destroy: true
 
   has_attached_file :head_pic, styles: { thumb: '100x100', small: '300x300', large: '600x600' }
   validates_attachment_content_type :head_pic, content_type: %w[image/jpg image/jpeg image/png image/gif], size: { in: 0..1500.kilobytes }, if: proc { |a| a.head_pic.present? }

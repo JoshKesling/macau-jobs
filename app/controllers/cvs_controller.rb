@@ -21,6 +21,7 @@ class CvsController < ApplicationController
     @cv.languages.build(name: 'Cantonese')
     @cv.languages.build(name: 'Mandarin')
     @cv.educations.new
+    @cv.previous_employments.new
   end
 
   # GET /cvs/1/edit
@@ -133,7 +134,14 @@ class CvsController < ApplicationController
         :years_attended,
         :year_completed,  
         :months_attended,
-        :graduated])
+        :graduated],
+      previous_employments_attributes: [:employer_name,
+        :job_duties,
+        :months,
+        :years,
+        :ended_year, 
+        :location])
+      
   end
 
   def set_user
