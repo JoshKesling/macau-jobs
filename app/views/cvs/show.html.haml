@@ -1,57 +1,140 @@
-%p#notice= notice
-
-%p
-  %b User:
-  = @cv.user
-%p
-  %b First name:
-  = @cv.first_name
-%p
-  %b Middle name:
-  = @cv.middle_name
-%p
-  %b Last name:
-  = @cv.last_name
-%p
-  %b Age:
-  = @cv.age
-%p
-  %b Height:
-  = @cv.height
-%p
-  %b Weight:
-  = @cv.weight
-%p
-  %b Marital status:
-  = @cv.marital_status
-%p
-  %b Children:
-  = @cv.children
-%p
-  %b Phone number:
-  = @cv.phone_number
-%p
-  %b Current address:
-  = @cv.current_address
-%p
-  %b Current city:
-  = @cv.current_city
-%p
-  %b Current country:
-  = @cv.current_country
-%p
-  %b Skills:
-  = @cv.skills
-%p
-  %b Work visa:
-  = @cv.work_visa
-%p
-  %b Visa exp date:
-  = @cv.visa_exp_date
-%p
-  %b Nationality:
-  = @cv.passport_country
-
-= link_to 'Edit', edit_user_cv_path(@cv)
-\|
-= link_to 'Back', user_cv_path
+.row
+  .col-sm-10.col-sm-offset-1
+    .panel.panel-primary
+      .panel-heading
+        %h3
+          Profile for
+          = current_user.username
+      .panel-body
+        %p#notice= notice
+        .row
+          .col-sm-2
+            %b UserName:
+          .col-sm-2
+            = current_user.username
+          .col-sm-2.col-sm-offset-3
+            %b Email:
+          .col-sm-2
+            = current_user.email
+        %br
+        .row
+          .col-sm-2
+            %b Name:
+          .col-sm-3
+            = current_user.cv.first_name + " " + current_user.cv.middle_name + " " + current_user.cv.last_name
+          .col-sm-2.col-sm-offset-2
+            %b Age:
+          .col-sm-2
+            = current_user.cv.age
+        %br
+        .row
+          .col-sm-2
+            %b Height:
+          .col-sm-2
+            = current_user.cv.height
+          .col-sm-2.col-sm-offset-3
+            %b Weight:
+          .col-sm-2
+            = current_user.cv.weight
+        %br
+        .row
+          .col-sm-2
+            %b Marital Status:
+          .col-sm-2
+            = current_user.cv.marital_status
+          .col-sm-2.col-sm-offset-3
+            %b Children:
+          .col-sm-2
+            = current_user.cv.children
+        %br
+        .row
+          .col-sm-2
+            %b Address:
+          .col-sm-3
+            #{current_user.cv.current_address}
+            %br
+            #{current_user.cv.current_city}, #{current_user.cv.current_country}
+          .col-sm-2.col-sm-offset-2
+            %b Phone Number:
+          .col-sm-2
+            = current_user.cv.phone_number
+        %br
+        .row
+          .col-sm-2
+            %b Nationality:
+          .col-sm-2
+            = current_user.cv.passport_country
+          .col-sm-2
+            %b Passport Number:
+          .col-sm-2
+            = current_user.cv.passport_number
+          .col-sm-2
+            %b Passport Exp Date:
+          .col-sm-2
+            = current_user.cv.passport_expiration_date
+        %br
+        .row
+          .col-sm-2
+            %b Has Work Visa?:
+          .col-sm-2
+            - if current_user.cv.work_visa
+              Yes
+            - else
+              No
+          .col-sm-2
+            %b Visa Exp Date:
+          .col-sm-2
+            = current_user.cv.visa_exp_date
+        %br
+        .row
+          .col-sm-2
+            %b Skills
+          .col-sm-6
+            = current_user.cv.skills
+        %br
+        .row
+          .col-sm-2
+            %b Languages:
+          .col-sm-2
+            %b Read
+          .col-sm-2
+            %b Write
+          .col-sm-2
+            %b Speak
+          .col-sm-2
+            %b Listen
+        - current_user.cv.languages.each do |l|
+          .row
+            .col-sm-2
+              = l.name
+            .col-sm-2
+              = l.read
+            .col-sm-2
+              = l.write
+            .col-sm-2
+              = l.speak
+            .col-sm-2
+              = l.listen
+        - if !current_user.cv.previous_employments.nil?
+          %br
+          .row
+            .col-sm-2
+              %b Job Name:
+            .col-sm-2
+              %b How Long
+            .col-sm-2
+              %b Last Year
+            .col-sm-6
+              %b Job Description
+          - current_user.cv.previous_employments.each do |j|
+            .row
+              .col-sm-2
+                = j.employer_name
+              .col-sm-2
+                #{j.years} Years, #{j.months} Months
+              .col-sm-2
+                = j.ended_year
+              .col-sm-6
+                = j.job_duties
+        
+        

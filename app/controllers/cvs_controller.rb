@@ -1,6 +1,6 @@
 class CvsController < ApplicationController
-  before_action :set_cv, except: %i[index new create]
-  before_action :set_user
+  # before_action :set_user
+  # before_action :set_cv
   before_action :set_language_levels, only: %i[new edit]
 
   # GET /cvs
@@ -12,14 +12,15 @@ class CvsController < ApplicationController
   # GET /cvs/1
   # GET /cvs/1.json
   def show
+    @cv = current_user.cv
   end
 
   # GET /cvs/new
   def new
-    @cv = @user.build_cv
-    @cv.languages.build(name: 'English')
-    @cv.languages.build(name: 'Cantonese')
-    @cv.languages.build(name: 'Mandarin')
+    @cv = current_user.build_cv
+    @cv.languages.build(name: 'English', read: 'None', write: 'None', speak: 'None', listen: 'None')
+    @cv.languages.build(name: 'Cantonese', read: 'None', write: 'None', speak: 'None', listen: 'None')
+    @cv.languages.build(name: 'Mandarin', read: 'None', write: 'None', speak: 'None', listen: 'None')
     @cv.educations.build
     @cv.previous_employments.build
   end
@@ -31,10 +32,10 @@ class CvsController < ApplicationController
   # POST /cvs
   # POST /cvs.json
   def create
-    @cv = @user.create_cv(cv_params)
+    @cv = current_user.create_cv(cv_params)
     respond_to do |format|
       if @cv.save
-        format.html { redirect_to user_cv_url(@user, @cv), notice: 'Cv was successfully created.' }
+        format.html { redirect_to user_cv_url(current_user, @cv), notice: 'Cv was successfully created.' }
         format.json { render :show, status: :created, location: @cv }
       else
         format.html { render :new }
@@ -47,8 +48,9 @@ class CvsController < ApplicationController
   # PATCH/PUT /cvs/1.json
   def update
     respond_to do |format|
+      @cv = current_user.cv
       if @cv.update(cv_params)
-        format.html { redirect_to @cv, notice: 'Cv was successfully updated.' }
+        format.html { redirect_to user_cv_path, notice: 'Cv was successfully updated.' }
         format.json { render :show, status: :ok, location: @cv }
       else
         format.html { render :edit }

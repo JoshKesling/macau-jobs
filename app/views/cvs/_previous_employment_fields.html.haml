@@ -4,8 +4,8 @@
     = f.input :location, wrapper_html: { class: 'col-sm-6' }
   .form-group
     %strong.col-sm-3 How long did you work there:
-    = f.input :years, label: 'Years', collection: 0..40, selected: 0, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-sm-2' }
-    = f.input :months, label: 'Months', collection: 0..12, selected: 0, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-sm-2' }
+    = f.input :years, label: 'Years', collection: 0..40, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-sm-2' }
+    = f.input :months, label: 'Months', collection: 0..12, input_html: { style: 'width: 80px' }, wrapper_html: { class: 'col-sm-2' }
     = f.input :ended_year, label: 'Year Finished', collection: 1900..2100, wrapper_html: { class: 'col-sm-4' }
   .form-group
     = f.input :job_duties, label: 'Explain what you did for this job', wrapper_html: { class: 'col-sm-12' }

@@ -1,9 +1,10 @@
-.form-group.nested-fields
+.form-group.nested-fields.clearfix
   = f.input :name, wrapper_html: { class: 'col-sm-4' }
   = f.input :read, collection: @language_levels, wrapper_html: { class: 'col-xs-6 col-sm-2' }
   = f.input :write, collection: @language_levels, wrapper_html: { class: 'col-xs-6 col-sm-2' }
   = f.input :speak, collection: @language_levels, wrapper_html: { class: 'col-xs-6 col-sm-2' }
   = f.input :listen, collection: @language_levels, wrapper_html: { class: 'col-xs-6 col-sm-2' }
-  .links.clearfix
-    = link_to_remove_association "Remove Language", f, class: 'btn btn-danger btn-sm pull-right'
-  %hr
+  - unless f.object.name == 'English' || f.object.name == 'Mandarin' || f.object.name == 'Cantonese'
+    .links.clearfix
+      = link_to_remove_association "Remove Language", f, class: 'btn btn-danger btn-sm pull-right'
+%hr

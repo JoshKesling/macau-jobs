@@ -1,5 +1,5 @@
 .container-fluid
-  = simple_form_for([current_user, @cv], url: user_cvs_path) do |f|
+  = simple_form_for [current_user, current_user.cv] do |f|
     = f.error_notification
     = render 'shared/error_messages', object: f.object
     .form-inputs
@@ -35,13 +35,7 @@
         %br
         #languages
           = f.simple_fields_for :languages do |language|
-            .form-group.clearfix
-              = language.input :name, disabled: true, wrapper_html: { class: 'col-sm-4' }
-              = language.input :read, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
-              = language.input :write, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
-              = language.input :speak, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
-              = language.input :listen, collection: @language_levels, selected: 'None', wrapper_html: { class: 'col-xs-6 col-sm-2' }
-            %hr
+            = render 'language_fields', f:language
           .links
             = link_to_add_association 'Add Language', f, :languages, class: 'btn btn-success btn-sm'
       %fieldset
@@ -119,3 +113,6 @@
       $('.work-visa-hide').prop('disabled', true);
     }
   });
+  $("input[value='English']").prop('readonly', true);
+  $("input[value='Cantonese']").prop('readonly', true);
+  $("input[value='Mandarin']").prop('readonly', true);

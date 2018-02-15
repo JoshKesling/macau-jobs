@@ -28,7 +28,10 @@
                 %li
                   = link_to "Your Account", edit_user_registration_path
                 %li
-                  = link_to "Your CV", new_user_cv_path(current_user)
+                  - if current_user.cv.nil? || current_user.cv.id.nil?
+                    = link_to "Your CV", new_user_cv_path(current_user, @cv)
+                  - else
+                    = link_to "Your CV", edit_user_cv_path(current_user, current_user.cv)
               %li
                 = link_to "Sign Out", destroy_user_session_path, method: :delete
             - else

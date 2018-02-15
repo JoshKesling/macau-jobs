@@ -1,7 +1,7 @@
-%h1 Editing cv
-
-= render 'form'
-
-= link_to 'Show', @cv
-\|
-= link_to 'Back', cvs_path
+.row
+  .col-sm-10.col-sm-offset-1
+    .panel.panel-primary
+      .panel-heading.text-center
+        %h3 Please Complete the CV Form
+      .panel-body
+        = render 'form'
