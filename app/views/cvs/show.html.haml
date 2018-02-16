@@ -136,5 +136,12 @@
                 = j.ended_year
               .col-sm-6
                 = j.job_duties
+        .row
+          .col-sm-6
+            .panel.panel-primary
+              = image_tag current_user.cv.head_pic.url(:thumb)
+          .col-sm-6
+            .panel.panel-primary
+              = image_tag current_user.cv.body_pic.url(:thumb)
         
         

@@ -50,9 +50,9 @@ class Cv < ApplicationRecord
   before_save :is_complete?
   
   has_attached_file :head_pic, styles: { thumb: '100x100', small: '300x300', large: '600x600' }
-  validates_attachment_content_type :head_pic, content_type: %w[image/jpg image/jpeg image/png image/gif], size: { in: 0..1500.kilobytes }, if: proc { |a| a.head_pic.present? }
+  validates_attachment_content_type :head_pic, content_type: /\Aimage\/.*\z/
   has_attached_file :body_pic, styles: { thumb: '100x100', small: '300x300', large: '600x600' }
-  validates_attachment_content_type :body_pic, content_type: %w[image/jpg image/jpeg image/png image/gif], size: { in: 0..1500.kilobytes }, if: proc { |a| a.body_pic.present? }
+  validates_attachment_content_type :body_pic, content_type: /\Aimage\/.*\z/
 
   validates :first_name, length: { in: 1..30 }, allow_blank: true
   validates :middle_name, length: { in: 1..30 }, allow_blank: true
