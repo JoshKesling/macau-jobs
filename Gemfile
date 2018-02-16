@@ -6,8 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'annotate', '~> 2.7', '>= 2.7.2'
-gem 'aws-sdk', '~> 3'
-gem 'aws-sdk-rails', '~> 2.0', '>= 2.0.1'
+gem 'aws-sdk'
+gem 'aws-sdk-rails'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'cancancan', '~> 2.1', '>= 2.1.3'
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
@@ -18,7 +18,7 @@ gem 'haml-rails', '~> 1.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'simple_form', '~> 3.5'
-gem "paperclip", "~> 5.2.1"
+gem 'paperclip'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
