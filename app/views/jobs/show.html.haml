@@ -13,5 +13,6 @@
             %h4 We are looking for people to fill this position!
           - else
             %h4 We're sorry, but this job has already been filled.
-        %p
-          = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary'
+        - if current_user.admin
+          %p
+            = link_to 'Edit', edit_job_path(@job), class: 'btn btn-success'

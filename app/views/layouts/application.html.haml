@@ -24,6 +24,10 @@
               - if current_user.admin
                 %li
                   = link_to "New Job Post", new_job_path
+                %li
+                  = link_to "Workers", users_path
+                %li
+                  = link_to "Agents", agents_path
               - else
                 %li
                   = link_to "Your Account", edit_user_registration_path

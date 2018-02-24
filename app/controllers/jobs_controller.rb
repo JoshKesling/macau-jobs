@@ -73,7 +73,11 @@ class JobsController < ApplicationController
   def set_page_title
     @page_title = case action_name
       when 'index'
-        'We Need People to Fill These Jobs'
+        if Job.count < 1
+          'We Do Not Have Any Jobs Available. Please Check Back Soon.'
+        else
+          'We Need People to Fill These Jobs'
+        end
       when 'show'
         @job.title
       when 'edit'

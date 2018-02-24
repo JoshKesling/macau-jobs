@@ -16,7 +16,7 @@
 
 class Job < ApplicationRecord
   belongs_to :agent
-  belongs_to :user
+  has_and_belongs_to_many :users
 
   validates :title, length: { in: 1..50 }, presence: true
   validates :summary, length: { in: 1..250 }, presence: true
