@@ -22,7 +22,8 @@
 class User < ApplicationRecord
   has_one :cv, dependent: :destroy
 
-  has_and_belongs_to_many :jobs
+  has_many :user_jobs
+  has_many :jobs, through: :user_jobs
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

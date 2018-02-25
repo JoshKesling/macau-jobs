@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214201118) do
+ActiveRecord::Schema.define(version: 20180225113736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,13 +87,6 @@ ActiveRecord::Schema.define(version: 20180214201118) do
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
-  create_table "jobs_users", id: false, force: :cascade do |t|
-    t.bigint "job_id"
-    t.bigint "user_id"
-    t.index ["job_id"], name: "index_jobs_users_on_job_id"
-    t.index ["user_id"], name: "index_jobs_users_on_user_id"
-  end
-
   create_table "languages", force: :cascade do |t|
     t.bigint "cv_id"
     t.string "name"
@@ -117,6 +110,15 @@ ActiveRecord::Schema.define(version: 20180214201118) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cv_id"], name: "index_previous_employments_on_cv_id"
+  end
+
+  create_table "user_jobs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_user_jobs_on_job_id"
+    t.index ["user_id"], name: "index_user_jobs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -143,8 +145,8 @@ ActiveRecord::Schema.define(version: 20180214201118) do
   add_foreign_key "educations", "cvs"
   add_foreign_key "jobs", "agents"
   add_foreign_key "jobs", "users"
-  add_foreign_key "jobs_users", "jobs"
-  add_foreign_key "jobs_users", "users"
   add_foreign_key "languages", "cvs"
   add_foreign_key "previous_employments", "cvs"
+  add_foreign_key "user_jobs", "jobs"
+  add_foreign_key "user_jobs", "users"
 end
