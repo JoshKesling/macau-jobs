@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   match '/faq', to: 'static_pages#faq', via: :get
 
   root to: "jobs#index"
+
+  post 'user_jobs/add'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end
